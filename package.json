@@ -3,21 +3,28 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {},
+  "type": "commonjs",
+  "scripts": {
+    "smoke": "npx playwright test --grep \"@smoke\"",
+    "regression": "npx playwright test --grep \"@regression\""
+
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/yarpan/conduit-test-api.git"
   },
+  "homepage": "https://github.com/yarpan/conduit-test-api#readme",
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
   "bugs": {
     "url": "https://github.com/yarpan/conduit-test-api/issues"
   },
-  "homepage": "https://github.com/yarpan/conduit-test-api#readme",
   "devDependencies": {
     "@playwright/test": "^1.55.0",
-    "@types/node": "^24.3.1"
+    "@types/node": "^24.3.1",
+    "@faker-js/faker": "^10.0.0",
+    "dotenv": "^17.2.1",
+    "joi": "^18.0.0"
   }
 }
