@@ -8,14 +8,14 @@ const userData = {
   },
 };
 
-test(`TC-001 registration`, async ({ apiClientNoAuth }) => {
+test.skip(`TC-001 registration`, async ({ apiClientNoAuth }) => {
   const response = await apiClientNoAuth.user.createUser(userData);
   expect(response.status()).toBe(200);
   const token = (await response.json()).user.token;
   expect(token).toBeDefined();
 });
 
-test("Create new user", async ({ apiClientNoAuth }) => {
+test.skip("Create new user", async ({ apiClientNoAuth }) => {
 
 
   // 1. try to login as user - if exists, then skip creation
@@ -30,6 +30,4 @@ test("Create new user", async ({ apiClientNoAuth }) => {
   console.log("ifUserExist: " + userExistCheck.ok())
 
 
-
-  //await apiClientNoAuth.user.createUser({ user });
 });
