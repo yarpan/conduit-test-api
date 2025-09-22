@@ -3,7 +3,7 @@ import { debugPrint } from "../helpers/debug.helper";
 
 setup("Check if user exist and create if not", async ({ apiClientNoAuth }) => {
   let token: string;
-  const { EMAIL: USER_EMAIL, USER_NAME, PASSWORD: USER_PASSWORD } = process.env;
+  const { USER_EMAIL, USER_NAME, USER_PASSWORD } = process.env;
 
   if (!USER_EMAIL || !USER_PASSWORD || !USER_NAME) {
     throw new Error("EMAIL, USER_NAME and PASSWORD environment variables must be defined.");
