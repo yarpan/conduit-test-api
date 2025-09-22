@@ -1,6 +1,5 @@
 import { test as base, request } from "@playwright/test";
-import { APIClient } from "../ApiClient";
-
+import { APIClient } from "../api-client/ApiClient";
 
 type Fixtures = {
   apiClientNoAuth: APIClient;
@@ -14,7 +13,6 @@ export const test = base.extend<Fixtures>({
   },
 
   apiClientAuth: async ({ }, use) => {
-    // const token = await TokenHelper.getToken(apiClient);
     const token = process.env.TOKEN;
     if (!token) {
       throw new Error("Environment variable TOKEN is not defined.");
@@ -23,12 +21,10 @@ export const test = base.extend<Fixtures>({
     const requestWithToken = await request.newContext({
       extraHTTPHeaders: { Authorization: `Token ${token}` },
     });
+    
     const apiClientWithToken = new APIClient(requestWithToken);
     await use(apiClientWithToken);
   },
 });
 
-
 export { expect } from "@playwright/test";
-
-

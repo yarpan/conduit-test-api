@@ -1,4 +1,4 @@
-import { expect, test } from "../app/fixtures/fixtures";
+import { expect, test } from "../fixtures/fixtures";
 
 const userData = {
   user: {

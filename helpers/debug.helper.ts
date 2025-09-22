@@ -1,4 +1,3 @@
-
 // To have additional outputs in debug-run-mode only
 export function debugPrint(message: string) {
   const isDebugMode = process.env.DEBUG_MODE === 'true';
