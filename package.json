@@ -5,8 +5,9 @@
   "main": "index.js",
   "type": "commonjs",
   "scripts": {
-    "smoke": "npx playwright test --grep \"@smoke\"",
-    "regression": "npx playwright test --grep \"@regression\""
+
+    "examples": "playwright test --project=examples --workers 1",
+    "conduit": "playwright test --project=conduit --workers 1"
 
   },
   "repository": {
