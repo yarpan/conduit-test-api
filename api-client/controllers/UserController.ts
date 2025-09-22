@@ -16,9 +16,14 @@ export class UserController extends BaseContoroller {
     return response;
   }
 
-  async login(email: string, password: string) {
+  async login(email: string | undefined, password: string | undefined) {
+    console.log('UserController.login called with email: ' + email + ', password: ' + password);
     const response = await this.request.post(this.loginEndpoint, {
-      data: { user: { email: email, password: password } },
+      data: { 
+        user: { 
+          email: email, 
+          password: password 
+        } },
     });
     return response;
   }

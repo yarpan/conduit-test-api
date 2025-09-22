@@ -1,4 +1,3 @@
-import { APIResponse, expect } from "@playwright/test";
 import { faker } from "@faker-js/faker";
 
 const { EMAIL, USER_NAME, PASSWORD } = process.env;
@@ -10,22 +9,22 @@ const messages = {
 
 export class UserData {
 
-  const user = {
-    user: {
-      email: faker.internet.email(),
-      password: faker.internet.password(),
-      username: faker.person.firstName(),
-    },
-  };
+  // const user = {
+  //   user: {
+  //     email: faker.internet.email(),
+  //     password: faker.internet.password(),
+  //     username: faker.person.firstName(),
+  //   },
+  // };
 
-  const userUpdateData = {
-    user: {
-      bio: faker.person.bio(),
-      image: faker.image.avatar(),
-    },
-  };
+  // const userUpdateData = {
+  //   user: {
+  //     bio: faker.person.bio(),
+  //     image: faker.image.avatar(),
+  //   },
+  // };
 
-  static userDataForLoginvalid() {
+  static userDataLoginValid() {
     return [
       {
         testId: 1,
@@ -33,19 +32,14 @@ export class UserData {
         credentials: {
           email: EMAIL,
           password: PASSWORD,
-        },
-        check: async (response: APIResponse) => {
-          expect(response.status()).toBe(200);
-          const body = await response.json();
-          expect(body.user.token).toBeDefined();
-          expect(body.user.email).toBe(EMAIL);
-        },
-      }];
+        }
+      }
+    ];
   }
 
 
 
-  static userDataForLoginInvalid() {
+  static userDataLoginInvalid() {
     return [
       {
         testId: 2,
@@ -78,9 +72,11 @@ export class UserData {
           email: EMAIL,
           password: "",
         }
-        },
-    ];
-
+      }
+    ]
   }
+
+
+
 
 }

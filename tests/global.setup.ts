@@ -6,6 +6,7 @@ setup("Check if user exist and create if not", async ({ apiClientNoAuth }) => {
   let token: string;
   const { USER_EMAIL, USER_NAME, USER_PASSWORD } = getUserCredentials();
   // Try to login with existing user
+  debugPrint('USER_EMAIL, USER_NAME, USER_PASSWORD: ' + USER_EMAIL + ', ' + USER_NAME + ', ' + USER_PASSWORD);  
   const loginResponse = await apiClientNoAuth.user.login(USER_EMAIL, USER_PASSWORD);
   debugPrint("loginResponse.status: " + loginResponse.status());
 
@@ -14,7 +15,8 @@ setup("Check if user exist and create if not", async ({ apiClientNoAuth }) => {
     token = loginResponseJson.user.token;
     debugPrint(`User ${USER_EMAIL} already exists. token: ${token}`);
   } else {
-    
+    console.log('Login failed with msg: ' + JSON.stringify(await loginResponse.json()));
+
     // If login fails, create a new user
     const createResponse = await apiClientNoAuth.user.createUser({
       user: {
@@ -24,8 +26,9 @@ setup("Check if user exist and create if not", async ({ apiClientNoAuth }) => {
       },
     });
 
-    expect(createResponse.status()).toBe(200);
     const createResponseJson = await createResponse.json();
+    debugPrint("createResponseJson: " + JSON.stringify(createResponseJson));
+    expect(createResponse.status()).toBe(200);
     token = createResponseJson.user.token;
     expect(token).toBeDefined();
     debugPrint(`User ${USER_EMAIL} created with token: ${token}`);
