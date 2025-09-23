@@ -21,7 +21,7 @@ export const test = base.extend<Fixtures>({
     const requestWithToken = await request.newContext({
       extraHTTPHeaders: { Authorization: `Token ${token}` },
     });
-    
+
     const apiClientWithToken = new APIClient(requestWithToken);
     await use(apiClientWithToken);
   },

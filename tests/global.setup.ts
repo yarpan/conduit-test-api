@@ -1,10 +1,10 @@
 import { test as setup, expect } from "../fixtures/fixtures";
 import { debugPrint } from "../helpers/debug.helper";
-import { getUserCredentials } from "../helpers/env.helper";
+import { getEnvUserCredentials } from "../helpers/env.helper";
 
 setup("Check if user exist and create if not", async ({ apiClientNoAuth }) => {
   let token: string;
-  const { USER_EMAIL, USER_NAME, USER_PASSWORD } = getUserCredentials();
+  const { USER_EMAIL, USER_NAME, USER_PASSWORD } = getEnvUserCredentials();
 
   // Try to login with existing user
   const loginResponse = await apiClientNoAuth.user.loginUser(USER_EMAIL, USER_PASSWORD);

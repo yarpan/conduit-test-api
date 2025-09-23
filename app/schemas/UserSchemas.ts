@@ -1,6 +1,6 @@
 import Joi from "joi";
 
-export class UsersSchemas {
+export class UserSchemas {
   static readonly User = Joi.object({
     username: Joi.string().required(),
     email: Joi.string().email().required(),
@@ -10,6 +10,6 @@ export class UsersSchemas {
   });
 
   static readonly UserResponse = Joi.object({
-    user: UsersSchemas.User,
+    user: UserSchemas.User,
   });
 }

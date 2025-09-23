@@ -1,6 +1,6 @@
 import Joi from "joi";
 
-export class ArticlesSchemas {
+export class ArticleSchemas {
   static readonly Author = Joi.object({
     username: Joi.string().required(),
     bio: Joi.string().optional(),
@@ -18,10 +18,10 @@ export class ArticlesSchemas {
     tagList: Joi.array().items(Joi.string()).required(),
     favorited: Joi.boolean().required(),
     favoritesCount: Joi.number().required(),
-    author: ArticlesSchemas.Author,
+    author: ArticleSchemas.Author,
   });
 
   static readonly ArticleResponse = Joi.object({
-    article: ArticlesSchemas.Article.required(),
+    article: ArticleSchemas.Article.required(),
   });
 }

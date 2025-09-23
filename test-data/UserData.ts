@@ -1,39 +1,21 @@
 import { faker } from "@faker-js/faker";
-import { getUserCredentials } from "../helpers/env.helper";
+import { getEnvUserCredentials } from "../helpers/env.helper";
 import { generateRandomString } from "../helpers/data.helper";
 
-//const { USER_EMAIL, USER_NAME, USER_PASSWORD } = getUserCredentials();
-
-
-const { USER_EMAIL, USER_NAME, USER_PASSWORD } = getUserCredentials();
+const { USER_EMAIL, USER_NAME, USER_PASSWORD } = getEnvUserCredentials();
 
 export class UserData {
-  // const user = {
-  //   user: {
-  //     email: faker.internet.email(),
-  //     password: faker.internet.password(),
-  //     username: faker.person.firstName(),
-  //   },
-  // };
 
-  // const userUpdateData = {
-  //   user: {
-  //     bio: faker.person.bio(),
-  //     image: faker.image.avatar(),
-  //   },
-  // };
-
-
-  static userDataRegisterValid() {
+  static getValidDataForRegistration() {
     return [
       {
         testId: 1,
         testName: "valid random data",
         userData: {
           user: {
-            email: faker.internet.email(),
+            email: faker.internet.email().toLowerCase(),
             password: faker.internet.password(),
-            username: faker.person.firstName(),
+            username: faker.person.firstName().toLowerCase(),
           },
         }
       },
@@ -42,9 +24,9 @@ export class UserData {
         testName: "short email",
         userData: {
           user: {
-            email: generateRandomString(1)+"@"+generateRandomString(1)+"."+generateRandomString(3),
+            email: (generateRandomString(1) + "@" + generateRandomString(1) + "." + generateRandomString(3)).toLowerCase(),
             password: faker.internet.password(),
-            username: faker.person.firstName(),
+            username: faker.person.firstName().toLowerCase(),
           },
         }
       },
@@ -53,20 +35,16 @@ export class UserData {
         testName: "long username",
         userData: {
           user: {
-            email: faker.internet.email(),
+            email: faker.internet.email().toLowerCase(),
             password: faker.internet.password(),
-            username: generateRandomString(100),
+            username: generateRandomString(100).toLowerCase(),
           },
         }
-      },
-
-
-
+      }
     ];
   }
 
-
-  static userDataRegisterInvalid() {
+  static getInvalidDataForRegistration() {
     return [
       {
         testId: 1,
@@ -155,10 +133,7 @@ export class UserData {
     ];
   }
 
-
-
-
-  static userDataLoginValid() {
+  static getValidDataForLogin() {
     return [
       {
         testId: 1,
@@ -172,9 +147,7 @@ export class UserData {
     ];
   }
 
-
-
-  static userDataLoginInvalid() {
+  static getInvalidDataForLogin() {
     return [
       {
         testId: 1,
@@ -223,7 +196,13 @@ export class UserData {
     ]
   }
 
+  static getDataForUpdateUser() {
+    return {
+      user: {
+        bio: faker.person.bio(),
+        image: faker.image.avatar(),
+      },
+    };
 
-
-
+  }
 }
