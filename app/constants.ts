@@ -10,9 +10,3 @@ export const endpoints = {
     users: "/api/users/",
     userLogin: "/api/users/login",
 };
-
-export const validationMessages = {
-  exist: "is already taken.",
-  empty: "can't be blank",
-  invalid: "is invalid",
-};
