@@ -25,7 +25,7 @@ test.describe("Article Search", () => {
   });
 
   test("TC-2031 search article by Author",
-    { tag: ["@article"] },
+    { tag: ["@article", "@search"] },
     async ({ apiClientAuth }) => {
       const getArticlesResponse = await apiClientAuth.article.getArticlesByAuthor(defaultAuthor);
       expect(getArticlesResponse.status()).toBe(200);
@@ -40,7 +40,7 @@ test.describe("Article Search", () => {
   );
 
   test("TC-2032 search article by tag",
-    { tag: ["@article"] },
+    { tag: ["@article", "@search"] },
     async ({ apiClientAuth }) => {
       const searchTag = ArticleData.getDefaultArticleData().article.tagList[0];
       const getArticlesResponse = await apiClientAuth.article.getArticlesByTag(searchTag);

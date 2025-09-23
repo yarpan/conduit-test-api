@@ -6,7 +6,7 @@ test.describe("User signup", () => {
 
   for (const { testId, testName, userData } of UserData.getValidDataForRegistration()) {
     test(`TC-101${testId} successful registration with ${testName}`,
-      { tag: ["@user"] },
+      { tag: ["@user", "@crud"] },
       async ({ apiClientNoAuth }) => {
         const response = await apiClientNoAuth.user.createUser(userData);
 

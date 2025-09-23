@@ -7,7 +7,7 @@ import { UserSchemas } from "../../app/schemas/UserSchemas";
 test.describe("User edit", () => {
 
   test("TC-1131 edit user",
-    { tag: ["@user", "@schema"] },
+    { tag: ["@user", "@crud", "@schema"] },
     async ({ apiClientAuth }) => {
       // get user initial info
       const profileResponse = await apiClientAuth.user.getUserProfile(getEnvUserCredentials().USER_NAME);

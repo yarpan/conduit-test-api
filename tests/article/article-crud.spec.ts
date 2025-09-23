@@ -23,7 +23,7 @@ test.describe("Articles CRUD", () => {
   });
 
   test("TC-2001 create article with valid data",
-    { tag: ["@article", "@schema"] },
+    { tag: ["@article", "@crud", "@schema"] },
     async () => {
       expect(articleCreateResponse.status()).toBe(200);
       expect(articleSlug).toBeDefined();
@@ -32,7 +32,7 @@ test.describe("Articles CRUD", () => {
     });
 
   test("TC-2002 edit article title, json schema validation",
-    { tag: ["@article"] },
+    { tag: ["@article", "@crud", "@schema"] },
     async ({ apiClientAuth }) => {
       const editResponse = await apiClientAuth.article.editArticle(ArticleData.getDataForUpdateArticle(), articleSlug);
       expect(editResponse.status()).toBe(200);
@@ -46,7 +46,7 @@ test.describe("Articles CRUD", () => {
     });
 
   test("TC-2003 delete article",
-    { tag: ["@article"] },
+    { tag: ["@article", "@crud"] },
     async ({ apiClientAuth }) => {
       const response = await apiClientAuth.article.deleteArticle(articleSlug);
       expect(response.status()).toBe(204);

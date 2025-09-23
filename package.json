@@ -6,7 +6,9 @@
   "type": "commonjs",
   "scripts": {
 
-    "conduit": "playwright test --project=conduit --workers 1"
+    "conduit:regression": "playwright test --project=conduit",
+    "conduit:negative": "playwright test --project=conduit -g @negative",
+    "conduit:schema": "playwright test --project=conduit -g @schema"
 
   },
   "author": "",

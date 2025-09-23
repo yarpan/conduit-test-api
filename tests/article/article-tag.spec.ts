@@ -11,7 +11,7 @@ test.describe("Article tags tests", () => {
   });
 
   test("TC-2041 search articles with known/own tag",
-    { tag: ["@tags", "@smoke", "@regression"] },
+    { tag: ["@article", "@search", "@tag"] },
     async ({ apiClientAuth }) => {
       // create some articles with own tag
       const numberOfArticlesToCreate = generateRandomNumber(3, 5);
@@ -34,7 +34,7 @@ test.describe("Article tags tests", () => {
   );
 
   test("TC-2042 search article with random tag from site",
-    { tag: ["@tags", "@smoke", "@regression"] },
+    { tag: ["@article", "@search", "@tag"] },
     async ({ apiClientAuth }) => {
       // get random tag from site 
       const existingTags = await apiClientAuth.tag.getExistingTags();
