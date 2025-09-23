@@ -1,5 +1,5 @@
 import { BaseContoroller } from "./BaseController";
-import { Comment } from "../../app/interfaces/article-interface";
+import { Comment } from "../../app/interfaces/article.interface";
 import { endpoints } from "../../app/constants";
 
 export class CommentController extends BaseContoroller {

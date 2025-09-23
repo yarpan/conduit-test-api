@@ -1,4 +1,4 @@
-import { Author } from "./user-interface";
+import { Author } from "./user.interface";
 
 export interface Article {
   article?: {

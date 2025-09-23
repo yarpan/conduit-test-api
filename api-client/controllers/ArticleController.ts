@@ -1,5 +1,5 @@
 import { BaseContoroller } from "./BaseController";
-import { Article, ArticlesResponse } from "../../app/interfaces/article-interface";
+import { Article, ArticlesResponse } from "../../app/interfaces/article.interface";
 import { endpoints } from "../../app/constants";
 import { getEnvUserCredentials } from "../../helpers/env.helper";
 

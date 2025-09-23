@@ -1,5 +1,5 @@
 import { BaseContoroller } from "./BaseController";
-import { User, UserCredentials } from "../../app/interfaces/user-interface";
+import { User, UserCredentials } from "../../app/interfaces/user.interface";
 import { endpoints } from "../../app/constants";
 
 export class UserController extends BaseContoroller {

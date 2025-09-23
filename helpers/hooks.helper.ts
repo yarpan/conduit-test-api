@@ -1,4 +1,4 @@
-import { ArticleResponse } from "../app/interfaces/article-interface";
+import { ArticleResponse } from "../app/interfaces/article.interface";
 import { debugPrint } from "./debug.helper";
 import { getEnvUserCredentials } from "./env.helper";
 
