@@ -1,6 +1,7 @@
 import { BaseContoroller } from "./BaseController";
 import { Article, ArticlesResponse } from "../../app/interfaces/article-interface";
 import { endpoints } from "../../app/constants";
+import { getEnvUserCredentials } from "../../helpers/env.helper";
 
 export class ArticleController extends BaseContoroller {
   private articlesEndpoint = endpoints.articles;
@@ -34,14 +35,14 @@ export class ArticleController extends BaseContoroller {
     return response;
   }
 
-  async addArticleToFavorites(slug: string) {
+  async addToFavorites(slug: string) {
     const response = await this.request.post(
       this.articlesEndpoint + slug + this.favoriteSuffix
     );
     return response;
   }
-  
-  async removeArticleFromFavorites(slug: string) {
+
+  async removeFromFavorites(slug: string) {
     const response = await this.request.delete(
       this.articlesEndpoint + slug + this.favoriteSuffix
     );
@@ -80,19 +81,27 @@ export class ArticleController extends BaseContoroller {
     return response;
   }
 
-  async getFirstOtherAuthor() {
+  async getOtherAuthorByIndex(index: number = 0) {
     const response = await this.request.get(this.articlesEndpoint);
     const json: ArticlesResponse = await response.json();
-    const myUsername = process.env.USER_NAME;
+
     if (!json.articles) {
       throw new Error("No articles found");
     }
-    const otherArticles = json.articles.filter(
-      (article) => article.author && article.author.username !== myUsername
+
+    const otherArticles = json.articles.filter((article) =>
+      article.author && article.author.username !== getEnvUserCredentials().USER_NAME
     );
-    if (otherArticles.length > 0 && otherArticles[0].author && otherArticles[0].author.username) {
-      return otherArticles[0].author.username;
+
+    if (
+      otherArticles.length > index &&
+      otherArticles[index] &&
+      otherArticles[index].author &&
+      otherArticles[index].author.username
+    ) {
+      return otherArticles[index].author.username;
     }
+
     throw new Error("No authors found");
   }
 }

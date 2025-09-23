@@ -1,5 +1,5 @@
 import { BaseContoroller } from "./BaseController";
-import { Comment } from "../../app/interfaces/comment-interface";
+import { Comment } from "../../app/interfaces/article-interface";
 import { endpoints } from "../../app/constants";
 
 export class CommentController extends BaseContoroller {
@@ -27,7 +27,7 @@ export class CommentController extends BaseContoroller {
 
   async deleteArticleComment(slug: string, commentId: string) {
     const response = await this.request.delete(
-      this.articlesEndpoint + slug + this.commentsSuffix + `/${commentId}`
+      this.articlesEndpoint + slug + this.commentsSuffix + commentId
     );
     return response;
   }

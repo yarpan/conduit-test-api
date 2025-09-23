@@ -2,8 +2,7 @@ import { expect, test } from "../../fixtures/fixtures";
 import { debugPrint } from "../../helpers/debug.helper";
 import { ArticleData } from "../../test-data/ArticleData";
 import { ArticleSchemas } from "../../app/schemas/ArticleSchemas";
-import { getEnvUserCredentials } from "../../helpers/env.helper";
-import { ArticleResponse } from "../../app/interfaces/article-interface";
+import { clearUserArticles } from "../../helpers/hooks.helper";
 
 let articleCreateResponse: any;
 let articleCreateResponseJson: any;
@@ -16,22 +15,14 @@ test.describe("Articles CRUD", () => {
     articleCreateResponse = createArticleObject.response;
     articleCreateResponseJson = await createArticleObject.response.json();
     articleSlug = createArticleObject.slug;
-    debugPrint("Created article: " + JSON.stringify(articleCreateResponseJson));
+    debugPrint("Created article with title: " + JSON.stringify(articleCreateResponseJson.article.title));
   });
 
   test.afterAll(async ({ apiClientAuth }) => {
-    const response = await apiClientAuth.article.getArticlesByAuthor(getEnvUserCredentials().USER_NAME);
-    const json = await response.json();
-    const slugs = json.articles.map((article: ArticleResponse) => article.slug);
-
-    for (const slug of slugs) {
-      const res = await apiClientAuth.article.deleteArticle(slug);
-      expect(res.status()).toBe(204);
-      debugPrint("Deleted article: " + slug);
-    }
+    await clearUserArticles(apiClientAuth);
   });
 
-  test("TC-1211 create article with valid data",
+  test("TC-2001 create article with valid data",
     { tag: ["@article", "@schema"] },
     async () => {
       expect(articleCreateResponse.status()).toBe(200);
@@ -40,7 +31,7 @@ test.describe("Articles CRUD", () => {
       expect(validationResult.error).toBeUndefined();
     });
 
-  test("TC-1212 edit article title, json schema validation",
+  test("TC-2002 edit article title, json schema validation",
     { tag: ["@article"] },
     async ({ apiClientAuth }) => {
       const editResponse = await apiClientAuth.article.editArticle(ArticleData.getDataForUpdateArticle(), articleSlug);
@@ -54,7 +45,7 @@ test.describe("Articles CRUD", () => {
       expect(schemaValidationResult.error).toBeUndefined();
     });
 
-  test("TC-1213 delete article",
+  test("TC-2003 delete article",
     { tag: ["@article"] },
     async ({ apiClientAuth }) => {
       const response = await apiClientAuth.article.deleteArticle(articleSlug);

@@ -21,8 +21,6 @@ test.describe("User edit", () => {
       debugPrint("Profile after update: " + JSON.stringify(editResponseJson));
 
       // validations
-      // expect(editResponseJson.user.email).not.toEqual(profileBefore.profile.email);
-      // expect(editResponseJson.user.username).not.toEqual(profileBefore.profile.username);
       expect(editResponseJson.user.bio).not.toEqual(profileBefore.profile.bio);
       expect(editResponseJson.user.image).not.toEqual(profileBefore.profile.image);
       const editResults = UserSchemas.UserResponse.validate(editResponseJson);

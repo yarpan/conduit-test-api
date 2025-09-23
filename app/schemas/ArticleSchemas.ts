@@ -24,4 +24,19 @@ export class ArticleSchemas {
   static readonly ArticleResponse = Joi.object({
     article: ArticleSchemas.Article.required(),
   });
+
+  static readonly Comment = Joi.object({
+    id: Joi.string().required(),
+    body: Joi.string().required(),
+    createdAt: Joi.string().required(),
+    author: ArticleSchemas.Author.required(),
+  });
+
+  static readonly CommentResponse = Joi.object({
+    comment: ArticleSchemas.Comment.required(),
+  });
+
+  static readonly CommentsResponse = Joi.object({
+    comments: Joi.array().items(ArticleSchemas.Comment).required(),
+  });
 }

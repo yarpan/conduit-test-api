@@ -35,6 +35,3 @@ setup("Check if user exist and create if not", async ({ apiClientNoAuth }) => {
 
   process.env.TOKEN = token;
 });
-
-
-

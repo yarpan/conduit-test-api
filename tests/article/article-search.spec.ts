@@ -2,8 +2,8 @@ import { expect, test } from "../../fixtures/fixtures";
 import { debugPrint } from "../../helpers/debug.helper";
 import { ArticleData } from "../../test-data/ArticleData";
 import { getEnvUserCredentials } from "../../helpers/env.helper";
-import { ArticleResponse } from "../../app/interfaces/article-interface";
 import { generateRandomNumber } from "../../helpers/data.helper";
+import { clearUserArticles } from "../../helpers/hooks.helper";
 
 let articleCreateResponseJson: any;
 let numberOfArticlesToCreate: number;
@@ -16,22 +16,15 @@ test.describe("Article Search", () => {
     for (let i = 0; i < numberOfArticlesToCreate; i++) {
       const createArticleObject = await apiClientAuth.article.createArticle(ArticleData.getDefaultArticleData());
       articleCreateResponseJson = await createArticleObject.response.json();
-      debugPrint("Created article with title: " + articleCreateResponseJson.article.title);
+      debugPrint("Created article with title: " + JSON.stringify(articleCreateResponseJson.article.title));
     }
   });
 
   test.afterAll(async ({ apiClientAuth }) => {
-    const response = await apiClientAuth.article.getArticlesByAuthor(defaultAuthor);
-    const json = await response.json();
-    const slugs = json.articles.map((article: ArticleResponse) => article.slug);
-
-    for (const slug of slugs) {
-      const res = await apiClientAuth.article.deleteArticle(slug);
-      expect(res.status()).toBe(204);
-    }
+    await clearUserArticles(apiClientAuth);
   });
 
-  test("TC-1221 search article by Author",
+  test("TC-2031 search article by Author",
     { tag: ["@article"] },
     async ({ apiClientAuth }) => {
       const getArticlesResponse = await apiClientAuth.article.getArticlesByAuthor(defaultAuthor);
@@ -46,7 +39,7 @@ test.describe("Article Search", () => {
     }
   );
 
-  test("TC-1222 search article by tag",
+  test("TC-2032 search article by tag",
     { tag: ["@article"] },
     async ({ apiClientAuth }) => {
       const searchTag = ArticleData.getDefaultArticleData().article.tagList[0];

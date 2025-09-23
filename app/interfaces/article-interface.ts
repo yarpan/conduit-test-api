@@ -1,4 +1,4 @@
-import { Author } from "./author-interface";
+import { Author } from "./user-interface";
 
 export interface Article {
   article?: {
@@ -28,4 +28,16 @@ export interface ArticleResponse {
 export interface ArticlesResponse {
   articles?: ArticleResponse[];
   articlesCount?: number;
+}
+
+export interface Comment {
+  comment: {
+    body: string;
+  };
+}
+
+export interface CommentResponse {
+  id?: string;
+  createdAt?: string;
+  author?: Author;
 }

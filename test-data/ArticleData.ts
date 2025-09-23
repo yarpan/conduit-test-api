@@ -21,4 +21,8 @@ export class ArticleData {
       },
     }
   };
+
+  static getRandomCommentForArticle(){
+    return { comment: { body: faker.lorem.sentence() } };
+  }
 }

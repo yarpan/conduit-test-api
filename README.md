@@ -6,9 +6,9 @@
 
  + Users (створення, логін, редагування користувача)
  + Articles (створення, редагування, видалення, пошук, пошук по тегам)
-Favourite Article (add, remove)
-Comments (add, remove)
-Tag (пошук по тегам) 
+ + Favourite Article (add, remove)
+ + Comments (add, remove)
+ + Tag (пошук по тегам) 
 
 Тести повинні мати можливість виконуватись на CI (GitHub Actions).
  + Зробіть необхідні  Controllers та реалізуйте патерн API Client
@@ -17,7 +17,7 @@ Tag (пошук по тегам)
  + Використовуйте playwright.config.ts
 Додайте сценарії в package.json
 README
-tags
+tags and names
 CI tune
 
 ❗️Коли ви завершите завдання  запросіть  користувач qa-senpai safonovcoach@gmail.com як collaborator до вашого репо GitHub.
