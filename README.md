@@ -3,8 +3,24 @@
 This project is an API test automation framework for the Conduit API, built using TypeScript and Playwright. It includes various utilities, schemas, and test cases to validate the functionality of the API endpoints.
 
 ---
-
 ## Project Structure
+
+test-api-conduit/  
+├── app/  
+│   ├── constants.ts  
+│   ├── interfaces/  
+│   └── schemas/  
+├── api-client/  
+│   ├── ApiClient.ts  
+│   └── controllers/  
+├── fixtures/  
+├── helpers/  
+├── test-data/  
+├── tests/  
+├── .env  
+├── [package.json]  
+└── [README.md]  
+
 
 ### 1. **`app/`**
 Contains application-level constants, schemas, and interfaces.
@@ -59,7 +75,9 @@ Utility functions to support test execution.
 ## Installation
 
 Install dependencies:
+```bash
 npm install
+```
 
 ## Environment Variables
 
@@ -87,6 +105,11 @@ Debug tests:
 ```bash
 npx playwright test --debug
 ```  
+To open the HTML report after a run:
+
+```bash
+npx playwright show-report
+```
 ## Project Features
 
 - **TypeScript Support**: Ensures type safety and better developer experience.  
@@ -95,23 +118,28 @@ npx playwright test --debug
 - **JSON Schema Validation**: Validates API responses against predefined schemas.  
 - **Fixtures**: Simplifies test setup and teardown.  
 
-## Project Structure
+---
 
-test-api-conduit/  
-├── app/  
-│   ├── constants.ts  
-│   ├── interfaces/  
-│   └── schemas/  
-├── api-client/  
-│   ├── ApiClient.ts  
-│   └── controllers/  
-├── fixtures/  
-├── helpers/  
-├── test-data/  
-├── tests/  
-├── .env  
-├── [package.json]  
-└── [README.md]  
+##  Running Tests with Scripts
+
+| Command                      | Description                    |
+|-----------------------------|--------------------------------|
+| `npm run test`              | Run all tests                  |
+| `npm run test:headed`       | Run tests with browser visible |
+| `npx playwright show-report`| Open test report in browser    |
+
+---
+
+
+##  CI Integration
+
+The project uses **GitHub Actions** for automated testing.
+
+See the workflow file:  
+`.github/workflows/*.yml`
+
+
+---
 
 ## Contributing
 
@@ -130,6 +158,7 @@ test-api-conduit/
 ```
 5. Open a pull request.  
 
-## License
+##  License
 
-This project is free of License.
+MIT – Free to use and modify.  
+  
