@@ -8,7 +8,7 @@ export const endpoints = {
     tags: "/api/tags/",
     user: "/api/user",
     users: "/api/users/",
-    userLogin: "/api/user/login",
+    userLogin: "/api/users/login",
 };
 
 export const validationMessages = {
