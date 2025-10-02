@@ -2,7 +2,7 @@ import { expect, test } from "../../fixtures/fixtures";
 import { debugPrint } from "../../helpers/debug.helper";
 import { ArticleData } from "../../test-data/ArticleData";
 import { ArticleSchemas } from "../../app/schemas/ArticleSchemas";
-import { clearUserArticles } from "../../helpers/hooks.helper";
+import { clearUserArticles } from "../../helpers/cleanup.helper";
 
 let articleCreateResponse: any;
 let articleCreateResponseJson: any;

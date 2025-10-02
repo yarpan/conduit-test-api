@@ -1,7 +1,7 @@
 import { expect, test } from "../../fixtures/fixtures";
 import { ArticleSchemas } from "../../app/schemas/ArticleSchemas";
 import { getEnvUserCredentials } from "../../helpers/env.helper";
-import { clearUserArticles } from "../../helpers/hooks.helper";
+import { clearUserArticles } from "../../helpers/cleanup.helper";
 import { debugPrint } from "../../helpers/debug.helper";
 import { ArticleData } from "../../test-data/ArticleData";
 

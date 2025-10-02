@@ -3,7 +3,7 @@ import { debugPrint } from "../../helpers/debug.helper";
 import { ArticleData } from "../../test-data/ArticleData";
 import { getEnvUserCredentials } from "../../helpers/env.helper";
 import { generateRandomNumber } from "../../helpers/data.helper";
-import { clearUserArticles } from "../../helpers/hooks.helper";
+import { clearUserArticles } from "../../helpers/cleanup.helper";
 
 let articleCreateResponseJson: any;
 let numberOfArticlesToCreate: number;
@@ -29,6 +29,7 @@ test.describe("Article Search", () => {
     async ({ apiClientAuth }) => {
       const getArticlesResponse = await apiClientAuth.article.getArticlesByAuthor(defaultAuthor);
       expect(getArticlesResponse.status()).toBe(200);
+
       const receivedArticles = await getArticlesResponse.json();
       expect(receivedArticles.articles.length).toBeGreaterThan(0);
       debugPrint("Number of articles by author " + defaultAuthor + ": " + receivedArticles.articles.length);
@@ -45,6 +46,7 @@ test.describe("Article Search", () => {
       const searchTag = ArticleData.getDefaultArticleData().article.tagList[0];
       const getArticlesResponse = await apiClientAuth.article.getArticlesByTag(searchTag);
       expect(getArticlesResponse.status()).toBe(200);
+      
       const receivedArticles = await getArticlesResponse.json();
       expect(receivedArticles.articles.length).toBeGreaterThan(0);
       debugPrint("Number of articles with tag " + searchTag + ": " + receivedArticles.articles.length);

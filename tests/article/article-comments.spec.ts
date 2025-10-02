@@ -2,7 +2,7 @@ import { expect, test } from "../../fixtures/fixtures";
 import { ArticleSchemas } from "../../app/schemas/ArticleSchemas";
 import { debugPrint } from "../../helpers/debug.helper";
 import { ArticleData } from "../../test-data/ArticleData";
-import { clearUserArticles } from "../../helpers/hooks.helper";
+import { clearUserArticles } from "../../helpers/cleanup.helper";
 
 let articleCreateResponse: any;
 let articleCreateResponseJson: any;
@@ -27,13 +27,17 @@ test.describe("Article comments tests", () => {
     async ({ apiClientAuth }) => {
       const createCommentResponse = await apiClientAuth.comment.addArticleComment(articleSlug, ArticleData.getRandomCommentForArticle());
       expect(createCommentResponse.response.status()).toBe(200);
+
       const createdComment = await createCommentResponse.response.json();
       expect(createdComment.comment.id).toBeDefined();
+
       const createCommentValidation = ArticleSchemas.CommentResponse.validate(createdComment);
       expect(createCommentValidation.error).toBeUndefined();
+
       const articleComments = await apiClientAuth.comment.getArticleComments(articleSlug);
       const articleCommentsJson = await articleComments.json();
       expect(articleCommentsJson.comments).toContainEqual(createdComment.comment);
+      
       const commentsListValidation = ArticleSchemas.CommentsResponse.validate(articleCommentsJson);
       expect(commentsListValidation.error).toBeUndefined();
     }
@@ -44,9 +48,11 @@ test.describe("Article comments tests", () => {
     async ({ apiClientAuth }) => {
       const createCommentResponse = await apiClientAuth.comment.addArticleComment(articleSlug, ArticleData.getRandomCommentForArticle());
       expect(createCommentResponse.response.status()).toBe(200);
+      
       const createdComment = await createCommentResponse.response.json();
       const deleteCommentResponse = await apiClientAuth.comment.deleteArticleComment(articleSlug, createdComment.comment.id);
       expect(deleteCommentResponse.status()).toBe(204);
+      
       const articleComments = await apiClientAuth.comment.getArticleComments(articleSlug);
       const receivedArticleComments = await articleComments.json();
       expect(receivedArticleComments.comments).not.toContainEqual(createdComment.comment);

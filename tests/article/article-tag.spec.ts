@@ -1,5 +1,5 @@
 import { expect, test } from "../../fixtures/fixtures";
-import { clearUserArticles } from "../../helpers/hooks.helper";
+import { clearUserArticles } from "../../helpers/cleanup.helper";
 import { generateRandomNumber } from "../../helpers/data.helper";
 import { debugPrint } from "../../helpers/debug.helper";
 import { ArticleData } from "../../test-data/ArticleData";
@@ -26,6 +26,7 @@ test.describe("Article tags tests", () => {
       // get list of articles with tag = ownTags[0]
       const getArticlesResponse = await apiClientAuth.article.getArticlesByTag(ownTags[0]);
       expect(getArticlesResponse.status()).toBe(200);
+      
       const articlesResponseJson = await getArticlesResponse.json();
       const articlesWithTag = articlesResponseJson.articles.length;
       debugPrint("Number of articles with tag " + ownTags[0] + ": " + articlesWithTag);
